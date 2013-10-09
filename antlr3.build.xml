@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<project name="mjorm-antlr-build">
+
+	<!-- The class path from maven -->
+	<path id="maven.classpath">
+		<path refid="maven.compile.classpath"/>
+		<path refid="maven.runtime.classpath"/>
+		<path refid="maven.test.classpath"/>
+		<path refid="maven.plugin.classpath"/>
+	</path>
+
+	<!--
+	 | Runs antlr
+	 +-->
+	<target name="generate-sources" depends="check-classpath-for-antlr3">
+		<echo message="Generating sources" />
+		<mkdir dir="${basedir}/target/generated-sources" />
+		<java classname="org.antlr.Tool" fork="true" failonerror="true" classpathref="maven.classpath">
+			<arg value="-verbose"/>
+			<arg value="-o"/>
+			<arg path="${basedir}/target/generated-sources/main/java/com/googlecode/mjorm/mql/"/>
+			<arg path="${basedir}/src/main/antlr3/com/googlecode/mjorm/mql/Mql.g" />
+		</java>
+	</target>
+
+	<!--
+	 | Checks the classpath for antlr 3
+	 +-->
+	<target name="check-classpath-for-antlr3">
+		<whichresource
+			classpathref="maven.classpath"
+			property="antlr.in.classpath"
+			class="org.antlr.Tool" />
+		
+		<fail message="ANTLR3 not found via CLASSPATH ${java.class.path}">
+		<condition>
+			<not>
+				<isset property="antlr.in.classpath"/>
+			</not>
+		</condition>
+		</fail>
+		<echo>ANTLR3 found via CLASSPATH</echo>
+	</target>
+
+</project>

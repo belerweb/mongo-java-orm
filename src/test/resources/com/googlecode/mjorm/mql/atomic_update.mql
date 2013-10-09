@@ -1,0 +1,18 @@
+
+from
+	collectionNameHere
+where
+	age=1
+atomic update
+	bitwise or x 1
+	bitwise and x 1
+	rename x y
+	pull all x [1, 2, 3]
+	pull x 3
+	add to set x each [1]
+	add to set x [1]
+	push all x [1, 2, 3]
+	push x 1
+	inc x -12
+	unset x
+	set x = 1

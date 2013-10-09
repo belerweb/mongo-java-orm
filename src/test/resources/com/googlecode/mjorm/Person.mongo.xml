@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<descriptors>
+
+	<object class="com.googlecode.mjorm.Person">
+		<property name="firstName" />
+		<property name="lastName" />
+		<property name="address" />
+	</object>
+
+	<object class="com.googlecode.mjorm.PersonEx">
+		<property name="firstName" />
+		<property name="lastName" />
+		<property name="address" />
+	</object>
+
+</descriptors>

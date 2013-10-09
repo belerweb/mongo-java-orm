@@ -1,0 +1,5 @@
+<mapreduce>
+	<collection>theCollection</collection>
+	<map>mapFunction</map>
+	<reduce>reduceFunction</reduce>
+</mapreduce>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<descriptors>
+
+	<object class="com.googlecode.mjorm.City">
+		<property name="id" id="true" />
+		<property name="name" column="col1" />
+		<property name="lat" column="col2" />
+		<property name="lon" column="col3" />
+	</object>
+
+</descriptors>

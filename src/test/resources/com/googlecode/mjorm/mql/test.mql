@@ -1,0 +1,52 @@
+
+
+from
+	testCollection
+where
+	f1 < 3
+	f2 <> 4
+	f3 != 4
+	not f4 >= 6
+	f5 <= 7
+
+	f6 exists()
+
+	f7 not_exists()
+
+	f8 mod(1, 2)
+
+	f9 all(1, 2 )
+	
+	f10 in(1, 2 )
+	
+	f11 nin(1, 2 )
+
+	f12 size(10)
+
+	f13 type(1)
+	
+	nor(a=1, b=2)
+	
+	or(a=1, b=2)
+	
+	and((a=1, b=2), (x=2, y='yes', z=[1,2,3,4,5,6,7,8,9,10]))
+	
+	predicate('function() { return this.a > 3;}')
+
+	not f14 =~ /asd as\nd a sdfdd/
+	not f15 = 'lasdasdf'
+	not f16 > 2
+	
+	f17 = [1, 2.3, true, false, 'test', /asdfasdf/]
+	
+select
+	firstName,
+	lastName
+hint
+	a asc
+	
+limit
+	0, 10;
+
+
+

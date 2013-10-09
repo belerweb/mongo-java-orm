@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<descriptors>
+
+	<object class="com.googlecode.mjorm.SuperDuper">
+		<property name="personSet" />
+		<property name="personList" />
+		<property name="personSortedSet" />
+		<property name="personMap" />
+		<property name="stringMap" />
+	</object>
+
+</descriptors>

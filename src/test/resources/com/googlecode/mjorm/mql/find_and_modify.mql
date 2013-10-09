@@ -1,0 +1,9 @@
+from collection
+where
+	a=1
+find and modify return new
+	inc b 1
+select *
+
+
+

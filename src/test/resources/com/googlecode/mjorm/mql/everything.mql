@@ -1,0 +1,27 @@
+from
+	testCollection
+where
+
+	field1 > 10
+	not field2 > 50
+	
+	field3 functionNoArgs()
+	not field4 functionNoArgs()
+	
+	field5 functionVariableArgs(1, 2, 3)
+	not field6 functionVariableArgs(1, 2, 3)
+
+	field7 functionQueryGroupArgs( (field7.a > 1, field7.b < 2), (field7.a > 5, field7.b < 6) )
+	field8 functionQueryArgs(field8.a > 5, field8.b < 6)
+	
+	not field9 functionQueryGroupArgs( (field8.a > 1, field8.b < 2), (field8.a > 5, field8.b < 6) )
+	not field10 functionQueryArgs(field8.a > 5, field8.b < 6)
+
+	documentFunctionNoArgs()
+	documentFunctionVariableArgs(1, 2, 3)
+	documentFunctionQueryArgs(a>5, a<6)
+	documentFunctionQueryGroupArgs( (a>1, a<2), (a>5, a<6) )
+	
+select *
+
+

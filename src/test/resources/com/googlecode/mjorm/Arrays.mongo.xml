@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<descriptors>
+
+	<object class="com.googlecode.mjorm.City">
+		<property name="id" id="true" />
+		<property name="name" />
+		<property name="lat" />
+		<property name="lon" />
+		<property name="zipCodes" />
+	</object>
+
+	<object class="com.googlecode.mjorm.State">
+		<property name="name" />
+		<property name="citiesArray" />
+	</object>
+
+</descriptors>

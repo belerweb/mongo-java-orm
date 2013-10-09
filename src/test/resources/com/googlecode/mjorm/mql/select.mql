@@ -1,0 +1,14 @@
+
+from
+	collectionNameHere
+where
+	age=12
+select
+	firstName,
+	lastName
+hint
+	a asc
+limit
+	0, 10;
+
+

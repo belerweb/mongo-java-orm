@@ -1,0 +1,296 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.googlecode</groupId>
+	<artifactId>mongo-java-orm</artifactId>
+	<version>1.2</version>
+	<name>ORM Framework for Mongo and Java</name>
+	<packaging>jar</packaging>
+	<url>http://code.google.com/p/mongo-java-orm/</url>
+
+	<!--
+     | Developers on the project
+     +-->
+	<developers>
+		<developer>
+			<email>brian.dilley@gmail.com</email>
+			<id>brian.dilley</id>
+			<name>Brian Dilley</name>
+		</developer>
+	</developers>
+
+	<!--
+     | scm configuration
+     +-->
+	<scm>
+		<connection>scm:svn:http://mongo-java-orm.googlecode.com/svn/tags/mongo-java-orm-1.2</connection>
+		<developerConnection>scm:svn:https://mongo-java-orm.googlecode.com/svn/tags/mongo-java-orm-1.2</developerConnection>
+		<url>http://mongo-java-orm.googlecode.com/svn/tags/mongo-java-orm-1.2</url>
+	</scm>
+
+	<!--
+	 | distribution (deployment) configuration
+	 +-->
+	<distributionManagement>
+		<repository>
+			<id>mongo-java-orm-webdav-maven-repo</id>
+			<name>mongo-java-orm maven repository</name>
+			<url>dav:https://mongo-java-orm.googlecode.com/svn/maven/repo/</url>
+			<uniqueVersion>false</uniqueVersion>
+			<layout>default</layout>
+		</repository>
+		<!-- <site>
+			<id>mongo-java-orm-webdav-maven-repo</id>
+			<name>mongo-java-orm site server</name>
+			<url>dav:https://mongo-java-orm.googlecode.com/svn/maven/site/</url>
+		</site> -->
+	</distributionManagement>
+
+	<build>
+
+		<!-- build extensions -->
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>1.0-beta-2</version>
+			</extension>
+		</extensions>
+
+		<!-- resource directories -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
+
+		<plugins>
+
+			<!-- antlr related -->
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>ant-generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<target name="generate-sources">
+								<ant antfile="${basedir}/antlr3.build.xml" inheritAll="true" inheritRefs="true">
+									<target name="generate-sources" />
+								</ant>
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- antlr related, adds generated sources to maven's compile list -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/main/java/</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			 </plugin>
+		
+			<!-- compiler plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			
+			<!-- 
+			 | Eclipse plugin
+			 +-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			
+			<!-- 
+			 | Deploy sources too
+			 +-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- 
+			 | Deploy javadocs too
+			 +-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		
+			<!-- eclipse plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<additionalBuildcommands>
+						<buildcommand>com.atlassw.tools.eclipse.checkstyle.CheckstyleBuilder</buildcommand>
+					</additionalBuildcommands>
+					<additionalConfig>
+						<file>
+							<name>.checkstyle</name>
+							<content>
+	                            <![CDATA[
+	                                   <?xml version="1.0" encoding="UTF-8"?>
+	                                   <fileset-config file-format-version="1.2.0" simple-config="false">
+	                                       <fileset name="sources" enabled="true" check-config-name="Mongo Java Orm Checkstyle Checks" local="false">
+	                                           <file-match-pattern match-pattern="target[\\/]*" include-pattern="false" />
+	                                           <file-match-pattern match-pattern="src[\\/]main[\\/]java[\\/]*" include-pattern="true" />
+	                                           <file-match-pattern match-pattern="src[\\/]test[\\/]java[\\/]*" include-pattern="false" />
+	                                       </fileset>
+	                                       <filter name="NonSrcDirs" enabled="true" />
+	                                   </fileset-config>
+	                            ]]>
+							</content>
+						</file>
+					</additionalConfig>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-antrun-plugin</artifactId>
+										<versionRange>[1.7,)</versionRange>
+										<goals>
+											<goal>run</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
+	</build>
+
+	<dependencies>
+		<!-- 
+		 | ANTLR dependencies 
+		 +-->
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr</artifactId>
+			<version>3.4</version>
+		</dependency>
+		
+		<!-- 
+		 | Mongo dependencies
+		 +-->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+		
+		<!-- 
+		 | Spring dependencies
+		 +-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.0.2.RELEASE</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>3.0.2.RELEASE</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>3.0.2.RELEASE</version>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock</artifactId>
+			<version>2.5.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jmock</groupId>
+			<artifactId>jmock-junit4</artifactId>
+			<version>2.5.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+</project>
+

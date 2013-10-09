@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<descriptors>
+
+	<object class="com.googlecode.mjorm.Address">
+		<property name="streetName" />
+		<property name="streetNumber" />
+		<property name="city" class="com.googlecode.mjorm.City" />
+	</object>
+
+</descriptors>

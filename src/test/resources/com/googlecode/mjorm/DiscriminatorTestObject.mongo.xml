@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<descriptors>
+
+	<object class="com.googlecode.mjorm.DiscriminatorTestObject" discriminator-type="string" discriminator-name="disc">
+		<property name="id" id="true" />
+		<property name="name" />
+		<property name="disc" />
+		<subclass class="com.googlecode.mjorm.TestObjectSubClassOne" discriminator-value="subClassOne">
+			<property name="one" />
+		</subclass>
+		<subclass class="com.googlecode.mjorm.TestObjectSubClassTwo" discriminator-value="subClassTwo">
+			<property name="two" />
+		</subclass>
+	</object>
+
+</descriptors>

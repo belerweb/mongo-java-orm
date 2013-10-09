@@ -1,0 +1,100 @@
+
+
+from
+	testCollection
+where
+	a < 3
+	a <> 4
+	a != 4
+	not a >= 6
+	a <= 7
+
+	somefield exists()
+
+	somefield not_exists()
+
+	somefield mod(1, 2)
+
+	somefield all(1, 2 )
+	
+	someField in(1, 2 )
+	
+	someField nin(1, 2 )
+
+	someField size(10)
+
+	someField type(1)
+	
+	nor(a=1, b=2)
+	
+	or(a=1, b=2)
+	
+	and(a=1, b=2)
+	
+	predicate('function() { return this.a > 3;}')
+
+	not x =~ /asd as\nd a sdfdd/
+	not a = 'lasdasdf'
+	not a > 2
+	
+select
+	firstName,
+	lastName
+hint
+	a asc
+	
+limit
+	0, 10;
+
+
+
+
+from
+	testCollection
+where
+	a < 3
+	a <> 4
+	a != 4
+	not a >= 6
+	a <= 7
+
+	somefield exists()
+
+	somefield not_exists()
+
+	somefield mod(1, 2)
+
+	somefield all(1, 2 )
+	
+	someField in(1, 2 )
+	
+	someField nin(1, 2 )
+
+	someField size(10)
+
+	someField type(1)
+	
+	nor(a=1, b=2)
+	
+	or(a=1, b=2)
+	
+	and(a=1, b=2)
+	
+	predicate('function() { return this.a > 3;}')
+
+	not x =~ /asd as\nd a sdfdd/
+	not a = 'lasdasdf'
+	not a > 2
+	
+select
+	firstName,
+	lastName
+hint
+	a asc
+	
+limit
+	0, 10;
+
+
+
+
