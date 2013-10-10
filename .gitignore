@@ -1,0 +1,8 @@
+.svn
+.git
+.settings
+.project
+.classpath
+.DS_Store
+Thumbs.db
+target
