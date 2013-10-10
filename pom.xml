@@ -1,16 +1,22 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.googlecode</groupId>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
+	<groupId>com.belerweb</groupId>
 	<artifactId>mongo-java-orm</artifactId>
 	<version>1.2</version>
 	<name>ORM Framework for Mongo and Java</name>
 	<packaging>jar</packaging>
 	<url>http://code.google.com/p/mongo-java-orm/</url>
 
-	<!--
-     | Developers on the project
-     +-->
+	<!-- | Developers on the project + -->
 	<developers>
 		<developer>
 			<email>brian.dilley@gmail.com</email>
@@ -19,32 +25,12 @@
 		</developer>
 	</developers>
 
-	<!--
-     | scm configuration
-     +-->
+	<!-- | scm configuration + -->
 	<scm>
 		<connection>scm:svn:http://mongo-java-orm.googlecode.com/svn/tags/mongo-java-orm-1.2</connection>
 		<developerConnection>scm:svn:https://mongo-java-orm.googlecode.com/svn/tags/mongo-java-orm-1.2</developerConnection>
 		<url>http://mongo-java-orm.googlecode.com/svn/tags/mongo-java-orm-1.2</url>
 	</scm>
-
-	<!--
-	 | distribution (deployment) configuration
-	 +-->
-	<distributionManagement>
-		<repository>
-			<id>mongo-java-orm-webdav-maven-repo</id>
-			<name>mongo-java-orm maven repository</name>
-			<url>dav:https://mongo-java-orm.googlecode.com/svn/maven/repo/</url>
-			<uniqueVersion>false</uniqueVersion>
-			<layout>default</layout>
-		</repository>
-		<!-- <site>
-			<id>mongo-java-orm-webdav-maven-repo</id>
-			<name>mongo-java-orm site server</name>
-			<url>dav:https://mongo-java-orm.googlecode.com/svn/maven/site/</url>
-		</site> -->
-	</distributionManagement>
 
 	<build>
 
@@ -111,8 +97,8 @@
 						</configuration>
 					</execution>
 				</executions>
-			 </plugin>
-		
+			</plugin>
+
 			<!-- compiler plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -122,10 +108,8 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
-			
-			<!-- 
-			 | Eclipse plugin
-			 +-->
+
+			<!-- | Eclipse plugin + -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -134,10 +118,8 @@
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
-			
-			<!-- 
-			 | Deploy sources too
-			 +-->
+
+			<!-- | Deploy sources too + -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -149,10 +131,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			<!-- 
-			 | Deploy javadocs too
-			 +-->
+
+			<!-- | Deploy javadocs too + -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
@@ -165,7 +145,7 @@
 					</execution>
 				</executions>
 			</plugin>
-		
+
 			<!-- eclipse plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -201,7 +181,7 @@
 
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -228,31 +208,25 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		
+
 	</build>
 
 	<dependencies>
-		<!-- 
-		 | ANTLR dependencies 
-		 +-->
+		<!-- | ANTLR dependencies + -->
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr</artifactId>
 			<version>3.4</version>
 		</dependency>
-		
-		<!-- 
-		 | Mongo dependencies
-		 +-->
+
+		<!-- | Mongo dependencies + -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
 			<version>2.9.1</version>
 		</dependency>
-		
-		<!-- 
-		 | Spring dependencies
-		 +-->
+
+		<!-- | Spring dependencies + -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
